@@ -1,0 +1,41 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix pred: <http://www.w3.org/2007/rif-builtin-predicate#>.
+PREFIX : <file:///home/darndt/ORCA/Structured/BasicN3Ontologies/ORCA/TBoxes/ex#>
+
+
+#Produce the labeld Ontology
+
+
+
+#"normal" triples
+
+#Produce the labeld Ontology
+{?s ?p ?o. 
+?s :ground ?s1.
+?p :ground ?p1.
+?o :ground ?o1.
+} => {?s1 ?p1 ?o1}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

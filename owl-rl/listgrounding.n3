@@ -1,0 +1,35 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+PREFIX : <file:///home/darndt/ORCA/Structured/BasicN3Ontologies/ORCA/TBoxes/ex#>
+
+
+
+
+
+
+{(?list1 ?list2) :transpair ?firstlist.  
+?list1 rdf:first ?a. ?a :ground ?al. ?list1 rdf:rest ?rest. ( ?list2 (?al)) list:append ?list.  
+
+}=>{
+(?rest ?list) :transpair ?firstlist.} .
+
+
+{?l1 :groundlist ?l2}<={(() ?l2) :transpair ?l1}.
+
+
+{?s :ground ?s1}<={?s e:label ?s1}.
+{?s :ground ?s}<={?s log:rawType ?types. ?types log:notEqualTo rdf:List. ?s e:notLabel ?l1}.
+{?s :ground ?s1.}<={?s log:rawType ?types. ?types log:equalTo rdf:List. ?s :groundlist ?s1.}.
+
+
+#this  rule has a bad influence! Violating Monotonicity?
+#{(?l1 () ) :transpair ?l1.}<={}.
+
+# {(() ?l2) :transpair ?l1}=>{?l1 :groundlist ?l2}.
+
+#Better alternative
+{(?p ()) :transpair ?p. ?p1 list:in ?p. ?p1 log:rawType ?typep. ?typep log:equalTo rdf:List. } => {(?p1 ()) :transpair ?p1.}.

@@ -1,0 +1,32 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+PREFIX : <file:///home/darndt/ORCA/Structured/BasicN3Ontologies/ORCA/TBoxes/ex#>
+
+
+
+
+
+{?s ?p ?o. #?s e:notLabel ?l1. #?p e:notLabel ?l2. ?o e:notLabel ?l3.
+#?s log:rawType ?types. ?types log:notEqualTo rdf:List.
+#?p log:rawType ?typep. ?typep log:notEqualTo rdf:List.
+?o log:rawType ?typeo. ?typeo log:equalTo rdf:List.
+#?o :groundlist ?ol.
+} => {(?o ()) :transpair ?o.}.
+
+{?s ?p ?o. 
+?s log:rawType ?types. ?types log:equalTo rdf:List.
+#?o :groundlist ?ol.
+} => {(?s ()) :transpair ?s.}.
+
+{?s ?p ?o. 
+?p log:rawType ?typep. ?typep log:equalTo rdf:List.
+#?o :groundlist ?ol.
+} => {(?p ()) :transpair ?p.}.
+
+#{(?p ()) :transpair ?p. ?p1 list:in ?p. ?p1 log:rawType ?typep. ?typep log:equalTo rdf:List. } => {(?p1 ()) :transpair ?p1.}.
+
+{?s ?p ?o} => {?s ?p ?o}.
