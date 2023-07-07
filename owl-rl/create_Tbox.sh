@@ -1,5 +1,5 @@
 #!/bin/bash
-#this script can be used to create the enriched merged tbox ontology for ORCA
+#this script can be used to create the OWL-RL rule version of an ontology
 
 cd ../..
 
